@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 /**
  * GlobalExceptionHandler class handles all exceptions globally across the application.
  * It uses @RestControllerAdvice to intercept and manage exceptions thrown by any controller.
@@ -34,4 +35,9 @@ public class GlobalExceptionHandler {
 	    public ResponseEntity<String> handleException(Exception ex) {
 	        return new ResponseEntity<>("Unexpected Error: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
+	    @ExceptionHandler(NoHandlerFoundException.class)
+	    public ResponseEntity<String> handleNotFound(NoHandlerFoundException ex) {
+	        return new ResponseEntity<>("404 Error: The requested URL was not found on this server.", HttpStatus.NOT_FOUND);
+	    }
+	   
 }
