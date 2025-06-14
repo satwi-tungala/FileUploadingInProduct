@@ -12,13 +12,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.githubproduct.model.ProductEntity;
 import com.example.githubproduct.repository.ProductRepository;
-
+/**
+ * Service implementation for handling product-related business logic.
+ */
 @Service
 public class ProductServicesImpl implements ProductServices{
 
 	private static Logger log = LoggerFactory.getLogger(ProductServicesImpl.class);
 	@Autowired
 	private ProductRepository repository;
+	 /**
+     * {@inheritDoc}
+     */
 	@Override
 	public ProductEntity saveProduct(String productName, String productDescription, MultipartFile productImage) throws IOException{
 		try {
@@ -35,6 +40,9 @@ public class ProductServicesImpl implements ProductServices{
 			throw new RuntimeException("Error Saving Product");
 		}
 	}
+	/**
+     * {@inheritDoc}
+     */
 		@Override
 		public List<ProductEntity> getAllProducts(){
 			try {
@@ -47,6 +55,9 @@ public class ProductServicesImpl implements ProductServices{
 		         throw new RuntimeException("Error fetching products");
 			}
 		}
+		/**
+	     * {@inheritDoc}
+	     */
 		@Override
 		public List<ProductEntity> getProductsByName(String productName){
 			try {
@@ -59,6 +70,9 @@ public class ProductServicesImpl implements ProductServices{
 				throw new RuntimeException("Error fetching products by name");
 		    }
 		}
+		/**
+	     * {@inheritDoc}
+	     */
 		@Override
 		public ProductEntity updateProduct(Long productId, String productName, String productDescription, MultipartFile productImage ) {
 			try {
@@ -81,6 +95,9 @@ public class ProductServicesImpl implements ProductServices{
 	        }
 			
 		}
+		/**
+	     * {@inheritDoc}
+	     */
 		 @Override
 		    public String deleteProduct(Long id) {
 		        try {
